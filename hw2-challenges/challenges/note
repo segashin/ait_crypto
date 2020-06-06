@@ -1,0 +1,46 @@
+
+
+dc 75 d2 1c ae 71 a1 fb ba 62 ec 52 ee 48 ac 8f 66 7e ea 75 94 1d 3b 78 f2 bc
+dc 75 d2 18 ae 73 a7 fd b4 64 e0 52 e8 48 ac 81 66 73 ea 75 94 1d 3a 7d f7 bc
+dc 75 d1 1e ae 72 a4 f6 b4 65 ef 52 e9 4a a9 83 65 72 ea 75 94 1d 3b 79 f4 bc
+            |                    |                    |                      
+
+encrypted source account id
+71 a1 fb ba 62 ec
+73 a7 fd b4 64 e0
+72 a4 f6 b4 65 ef
+
+encrypted destination account id
+ee 48 ac 8f 66 7e
+e8 48 ac 81 66 73
+e9 4a a9 83 65 72
+
+
+By inspection of the source account IDs, find that b4 appears twice at the same position.
+Thus, the two IDs containing b4 has to be
+- B29846 -> 42 32 39 38 34 36 
+- C12859 -> 43 31 32 38 35 39
+
+Similary, the two of the destination IDs should be
+- C12859 -> 63 31 32 38 35 39
+- E12654 -> 45 31 32 36 35 34
+
+
+- A74635 -> 41 37 34 36 33 35 
+- D37465 -> 44 33 37 34 36 35
+
+Taking the xor of encrypted and decryped ids, the possible key strings are 3096cf8c51d9 and 3195c48c50d6.
+Since 3195c48c50d6 gives valid id for all three of them, it is the key for source IDs.
+Similary, ad799eb75347 is the key for the destination IDs.
+
+You can forge a transaction number by combining three transactions.
+For instance,
+dc 75 d1 18 is for sure greater than any of those three transactions. 
+
+Assuming 75 94 1d is encrypted from 0000,
+the key=45 encrypts 75 to 0. So, key=75 encrypts 74 to 1.
+
+dc75d118ae71a1fbba62ec52f521c6ef0b1fea74941d3b79f4 works.
+
+
+

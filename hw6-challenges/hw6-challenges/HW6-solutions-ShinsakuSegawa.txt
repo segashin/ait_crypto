@@ -1,0 +1,43 @@
+Applied Cryptography
+HW6 solutions -- Deadline: March 5 (Thursday), midnight
+
+Name: Shinsaku Segawa
+e-mail: segasin0810shin@outlook.jp
+
+==========================================
+Challenge-1: Fill the Gap (2 points)
+------------------------------------------
+The encryption key that was used to produce ciphertext.crypt:
+<copy the value of the key in hex format here>
+b2e1237a408e072e2e1306c7ed22b2e7
+
+The result of decoding ciphertext.crypt with the obtained key:
+<copy the decrypted payload here>
+Psychologist Michal Kosinski developed a method to analyze people in minute detail based on their Facebook activity. Did a similar tool help propel Donald Trump to victory? Two reporters from Zurich-based Das Magazin went data-gathering.
+
+​On November 9 at around 8.30 AM., Michal Kosinski woke up in the Hotel Sunnehus in Zurich. The 34-year-old researcher had come to give a lecture at the Swiss Federal Institute of Technology (ETH) about the dangers of Big Data and the digital revolution. Kosinski gives regular lectures on this topic all over the world. He is a leading expert in psychometrics, a data-driven sub-branch of psychology. When he turned on the TV that morning, he saw that the bombshell had exploded: contrary to forecasts by all leading statisticians, Donald J. Trump had been elected president of the United States. 
+
+
+Steps of your solution (explain how you managed to figure out the key):
+The internal state right after the key was generated (X_i+1) can be obtained by taking the xor of iv (the first 16bits of ciphertext) and the given internal state X_i+2.
+The decrypted text is the result of the xoring this internal state (X_i+1) and the other given internal state (X_i).
+
+
+
+==========================================
+Challenge-2: Input Manipulation (1 point)
+------------------------------------------
+The input T_i+1 that produces the same output:
+<copy the value of the input in hex format here>
+0c69c0e9c7e442bbdd9deadab789e4df
+
+The steps of your solution (explain your method of finding this input):
+The i+1th input to the MD5 is (output_i)+(X_i)+(T_i+1).
+In order to get the same output from the MD5, the input should equal (X_i)+(T_i).
+So the equation is,
+    (output_i)+(X_i)+(T_i+1) = (X_i)+(T_i)
+->  (output_i)+(T_i+1)  = (T_i)
+
+Thus,
+    (T_i+1) = (output_i)+(T_i)
+

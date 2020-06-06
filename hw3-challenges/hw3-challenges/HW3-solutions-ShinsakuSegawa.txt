@@ -1,0 +1,18 @@
+Applied Cryptography
+HW3 solutions -- Deadline: February 19 (Wed), midnight
+
+Name: Shinsaku Segawa
+E-mail: segashin0810shin@outlook.jp
+
+=======================================================
+Challenge-1: MD5x3 (3 points)
+-------------------------------------------------------
+The key: 0xfeed3ec0ffee
+
+
+Briefly explain how you solved the challenge:
+
+Applying RF function with all possible keys to the original message and encrypted message. Then look for a pair of identical strings. By this MITM attack, I found that the first 4 bytes and the last 4 bytes are 0xfeed and 0xffee respectively. To find the rest, I used brute force approach and found that it is 0x3ec0. By concatenating them altogether, the full key is acquired.
+
+
+Attach, in a separate file, your attack script that performs your attack and prints out the discovered key.

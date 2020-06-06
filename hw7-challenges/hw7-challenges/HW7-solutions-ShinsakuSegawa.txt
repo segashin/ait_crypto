@@ -1,0 +1,20 @@
+Applied Cryptography
+HW7 solutions -- Deadline: March 11 (Wednesday), midnight
+
+Name: Shinsaku Segawa
+e-mail: segashin0810shin@outlook.jp
+
+=======================================
+Challenge-1: Textbook RSA (1 point)
+---------------------------------------
+Copy the line here that computes the plaintext:
+plaintext = textbookRSA.findInvPow(ciphertext, e) 
+
+
+What is the plaintext printed on the screen?
+<copy the ascii plaintext here>
+11581323962688213213899828531101274060530193481177849224860644377063874692008075251317711861332665473818630187255589835541210926
+
+
+
+=======================================

@@ -1,0 +1,183 @@
+Applied Cryptography
+Optional HW solutions -- Deadline: April 13 (Mon), midnight
+
+Name: Shinsaku Segawa
+E-mail: ssegaw21@colby.edu
+
+================================================
+Challenge-01: Meet NataSHA (2 points)
+------------------------------------------------
+The recovered key:
+;\xf1\xce>M\xfc
+
+The recovered plaintext blocks (both of them):
+
+Meet_NataSHA_which_is_not_a_SHA_although_we_use_it_not_to_hash_but_to_encrypt...
+
+Steps of your solution:
+<brief description that is just enough to reproduce your solution>
+
+Seperate the natasha into halves as shown below. The output of the first half (A1 and B1) has to match that of the second half(A2 and B2).
+Thus, you can mount a meet in the middle attack by using the given plaintext as the input to the first half, and the given ciphertext as the input to the second half shown in the diagrams below.
+There are 2^24 possible keys to try for each of the halves.
+Find a pair of key which gives colliding outputs. It turns out that  ;\xf1\xce>M\xfc works.
+
+     L0                    R0
+     |                     |
+     |     +-----+         |
+     |     |     |<--- K0  |
+    [+]<---| SHA |<--------+
+     |     |     |<--- K0  |
+     |     +-----+         |
+     |                     |
+     |         +-----+     |
+     |  K1 --->|     |     |
+     +-------->| SHA |--->[+]
+     |  K1 --->|     |     |
+     |         +-----+     |
+     |                     |     
+     |     +-----+         |
+     |     |     |<--- K2  |
+    [+]<---| SHA |<--------+
+     |     |     |<--- K2  |
+     |     +-----+         |
+     |                     |
+     A1                    B1
+
+     L6                    R6
+     |                     |
+     |         +-----+     |
+     |  K5 --->|     |     |
+     +-------->| SHA |--->[+]
+     |  K5 --->|     |     |
+     |         +-----+     |
+     |                     |
+     |     +-----+         |
+     |     |     |<--- K4  |
+    [+]<---| SHA |<--------+
+     |     |     |<--- K4  |
+     |     +-----+         |
+     |                     |
+     |         +-----+     |
+     |  K3 --->|     |     |
+     +-------->| SHA |--->[+]
+     |  K3 --->|     |     |
+     |         +-----+     |
+     A2                    B2
+
+
+
+Put your attack script and all files that it uses in a folder named meet_natasha, zip the folder, and submit also meet_natasha.zip. We should be able to unzip the submitted file and run your script without any additional effort.
+
+================================================
+Challenge-02: One, two, buckle my shoe (3 points)
+------------------------------------------------
+The flag: 
+BE CAREFUL WITH STREAM CIPhERS
+
+Decrypted text:
+                                                                                                                                CrySys Lab, Buda                pest
+*The laboratory Was involved in The forensic anaLysis of several high-profile taRgeted attacks.[]
+
+In October 211, CrySyS Lab Discovered the DUqu malware;[5] Pursued the analYsis of the Duqu malware and as A result of the Investigation, iDentified a dropPer file with an MS 0-day kernel exploit inside;{6] and finally Released an new Open-source Duqu Detector ToolkiT[7] to detect DUqu tracesand rUnning Duqu instAnces.
+
+InMay 212, the malware analysis team aT CrySyS Lab parTicipated in an International coLlaboration aimiNg at the analysIs of an as yet Unknown malware, which they call sKyWIper.At thE same time KaspErsky Lab analyzEd the malware FLame[8] and Iran National CERT (mAHER)[9] the maLware Flamer. LaTer, thesemalwaRes turnedout tO be the same.
+fLAG: BE CAREFUL WITH STREAM CIPhERS
+
+Other analYsis published bY CrySyS Lab incLude the passworD analysisof thE Hungarian ISP, Elender, and a Thorough HungariAn security survEy of servers afTer the publicatIons of the KamiNsky DNS attack.{10]
+
+
+
+Steps of your solution:
+Assume that the two ciphertexts were encrypted with the same key. By looking at aes_ctr.py, the counter does not take a nonce or any other randomness.
+Thus, the Nth block is encrypted as Enc_key(ctr=N) + [Nth plaintext block].
+Since Enc_key(ctr=N) must have given the same value for both versions of the encryptions provided, you can xor the two versions of the ciphertexts to find the xor of the plaintexts.
+Although you can get the content of one of the plaintexts if you know the content of the other, there is no clue what the content is yet.
+Thus, just see what happens if you guess the content of one file is all white spaces, because white space is usually the most frequent letter in a text.
+Luckily, you can find a meaningfull block in the result, which is, "CrySys Lab, Buda".
+This means one of the plaintext had this text block, while the other had a block of spaces at the same position.
+The next guess you can make is that this block appears somewhere in the plaintext which had a block of spaces as well.
+By trying this, you can reveal another block which is "pest\n*The labora". You can make the same guess again with this text block.
+By repeating this proceadure, you can reveal a good amount of plaintext and it turn out that one of the plaintext is just pushed back by serveral blocks compared with the other plaintext.
+Then, you can automate the proceadure to find the entire plaintext efficiently.
+
+
+
+
+
+Put your attack script and all files that it uses in a folder named one_two_buckle_my_shoe, zip the folder, and submit also one_two_buckle_my_shoe.zip. We should be able to unzip the submitted file and run your script without any additional effort.
+
+================================================
+Challenge-03: CBC-MAC forgery (1 point)
+------------------------------------------------
+Description of your CBC-MAC forgery attack:
+<brief description that is just enough to reproduce your solution>
+
+
+
+Put your attack script and all files that it uses in a folder named cbc_mac_forgery, zip the folder, and submit also cbc_mac_forgery.zip. We should be able to unzip the submitted file and run your script without any additional effort.
+
+===============================================
+Challenge-04: Iterative Guessing (3 points)
+-----------------------------------------------
+The decrypted payload:
+<copy the entire decrypted payload (including the flag) here>
+
+Steps of your solution:
+<brief description that is just enough to reproduce your solution>
+
+
+
+Put your attack script and all files that it uses in a folder named iterative_guessing, zip the folder, and submit also iterative_guessing.zip. We should be able to unzip the submitted file and run your script without any additional effort.
+
+===============================================
+Challenge-05: Wiener's attack (4 points)
+-----------------------------------------------
+The flag you obtained:
+<copy the flag string here>
+
+
+The source code of your attack script (complete the skeleton below):
+
+```python
+####Break RSA####  
+with open("flag.crypt", "r") as f:
+    lines = [line.strip() for line in f]
+    exp = int(lines[0])
+    mod = int(lines[1])
+    flg = int(lines[2])
+    
+    sys.setrecursionlimit(10000)
+    frac = extEucList(exp, mod)
+    
+    # Look for convergents in frac that satisfy the Wiener conditions
+    for (u,v) in getConvergents(frac):
+        # Fill your code here ...
+
+
+
+
+
+
+
+                    # If valid candidate found decrypt message
+                    rsa = textbookRSA.TextbookRSA({'e':exp, 'd':v, 'n':mod})
+                    solution = rsa.decrypt(flg)
+                    print(solution.decode('utf-8'))
+```
+
+===============================================
+Challenge-06: Bellovin's Nightmare (2 points)
+-----------------------------------------------
+The password you managed to crack:
+<copy the password here>
+
+The idea of your attack:
+<brief description of what made it possible to crack the password>
+
+
+
+Put your attack script and all files that it uses in a folder named bellovins_nightmare, zip the folder, and submit also bellovins_nightmare.zip. We should be able to unzip the submitted file and run your script without any additional effort.
+
+================================================
+

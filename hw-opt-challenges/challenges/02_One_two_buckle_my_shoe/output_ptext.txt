@@ -1,0 +1,10 @@
+
+CrySys Lab, Buda                pest
+*The laboratory Was involved in The forensic anaLysis of several high-profile taRgeted attacks.[]
+
+In October 211, CrySyS Lab Discoveredthe DUqu malware;[5] Pursued the analYsis of the Duqu malware and as A result of the Investigation, iDentified a dropPer file with an MS 0-day kernel exploit inside;{6] and finally Released an new Open-source Duqu Detector ToolkiT[7] to detect DUqu tracesand rUnning Duqu instAnces.
+
+InMay 212, the malware analysis team aT CrySyS Lab parTicipated in an International coLlaboration aimiNg at the analysIs of an as yet Unknown malware, which they call sKyWIper.At thE same time KaspErsky Lab analyzEd the malware FLame[8] and Iran National CERT (mAHER)[9] the maLware Flamer. LaTer, thesemalwaRes turnedout tO be the same.
+fLAG: BE CAREFUL WITH STREAM CIPhERS
+
+Other analYsis published bY CrySyS Lab incLude the passworD analysisof thE Hungarian ISP, Elender, and a Thorough HungariAn security survEy of servers afTer the publicatIons of the KamiNsky DNS attack.{10]

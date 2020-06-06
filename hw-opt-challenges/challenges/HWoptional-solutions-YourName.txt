@@ -1,0 +1,115 @@
+Applied Cryptography
+Optional HW solutions -- Deadline: April 13 (Mon), midnight
+
+Name: Shinsaku Segawa
+E-mail: ssegaw21@colby.edu
+
+================================================
+Challenge-01: Meet NataSHA (2 points)
+------------------------------------------------
+The recovered key:
+;\xf1\xce>M\xfc
+
+The recovered plaintext blocks (both of them):
+
+Meet_NataSHA_which_is_not_a_SHA_although
+_we_use_it_not_to_hash_but_to_encrypt...
+
+Steps of your solution:
+<brief description that is just enough to reproduce your solution>
+
+Seperate the natasha into halves. Then, encrypt the know plain text ("Meet_NataSHA...") 
+
+
+Put your attack script and all files that it uses in a folder named meet_natasha, zip the folder, and submit also meet_natasha.zip. We should be able to unzip the submitted file and run your script without any additional effort.
+
+================================================
+Challenge-02: One, two, buckle my shoe (3 points)
+------------------------------------------------
+The flag: 
+<copy the discovered flag here>
+
+Decrypted text:
+<copy the obtained plaintext here>
+
+Steps of your solution:
+<brief description that is just enough to reproduce your solution>
+
+
+
+Put your attack script and all files that it uses in a folder named one_two_buckle_my_shoe, zip the folder, and submit also one_two_buckle_my_shoe.zip. We should be able to unzip the submitted file and run your script without any additional effort.
+
+================================================
+Challenge-03: CBC-MAC forgery (1 point)
+------------------------------------------------
+Description of your CBC-MAC forgery attack:
+<brief description that is just enough to reproduce your solution>
+
+
+
+Put your attack script and all files that it uses in a folder named cbc_mac_forgery, zip the folder, and submit also cbc_mac_forgery.zip. We should be able to unzip the submitted file and run your script without any additional effort.
+
+===============================================
+Challenge-04: Iterative Guessing (3 points)
+-----------------------------------------------
+The decrypted payload:
+<copy the entire decrypted payload (including the flag) here>
+
+Steps of your solution:
+<brief description that is just enough to reproduce your solution>
+
+
+
+Put your attack script and all files that it uses in a folder named iterative_guessing, zip the folder, and submit also iterative_guessing.zip. We should be able to unzip the submitted file and run your script without any additional effort.
+
+===============================================
+Challenge-05: Wiener's attack (4 points)
+-----------------------------------------------
+The flag you obtained:
+<copy the flag string here>
+
+
+The source code of your attack script (complete the skeleton below):
+
+```python
+####Break RSA####  
+with open("flag.crypt", "r") as f:
+    lines = [line.strip() for line in f]
+    exp = int(lines[0])
+    mod = int(lines[1])
+    flg = int(lines[2])
+    
+    sys.setrecursionlimit(10000)
+    frac = extEucList(exp, mod)
+    
+    # Look for convergents in frac that satisfy the Wiener conditions
+    for (u,v) in getConvergents(frac):
+        # Fill your code here ...
+
+
+
+
+
+
+
+                    # If valid candidate found decrypt message
+                    rsa = textbookRSA.TextbookRSA({'e':exp, 'd':v, 'n':mod})
+                    solution = rsa.decrypt(flg)
+                    print(solution.decode('utf-8'))
+```
+
+===============================================
+Challenge-06: Bellovin's Nightmare (2 points)
+-----------------------------------------------
+The password you managed to crack:
+<copy the password here>
+
+The idea of your attack:
+<brief description of what made it possible to crack the password>
+
+
+
+Put your attack script and all files that it uses in a folder named bellovins_nightmare, zip the folder, and submit also bellovins_nightmare.zip. We should be able to unzip the submitted file and run your script without any additional effort.
+
+================================================
+

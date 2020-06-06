@@ -1,0 +1,60 @@
+Applied Cryptography
+HW1 solutions -- Deadline: Feb 9 (Sunday), midnight
+
+Name: Shinsaku Segawa
+E-mail: ssegaw21@colby.edu
+
+==============================================
+Challenge-1: Message from the Oracle (1 point)
+----------------------------------------------
+Decrypted message:
+
+For you inhabitants of wide wayed Sparta Either your great and glorious city must be wasted by Persian men Or if not that then the bound of Lacedaemon must mourn a dead king from Heracles line
+
+----------------------------------------------
+Steps of the solution (brief description that is just enough to reproduce your method):
+
+For each letter you read, skip N letters where N is 1,2,3,....
+N=6 gives the answer message.
+
+
+==============================================
+Challenge-2: Four-Square cipher (2 points)
+----------------------------------------------
+Decrypted message:
+
+Troopships going to arrive tomorrow morning.
+Arrange the accommodation for the troops in the schoolhouse.
+The execution of this process should be supervised by the quartermaster.
+If it is raining, then the remaining outstanding stuff should be placed in the building including the "Lasagne" labeled flag.
+the commandant is not available therefore the date of departure is indeterminate.
+
+
+The 4-square matrices recovered:
+<copy the matrices here>
+
+ABCDE ILOVE
+FGHIK C YPT
+LMNOP GAHZX
+QRSTU WUSQN
+VWXYZ  K   
+
+IENOY ABCDE
+C ALF FGHIK
+SZXWV LMNOP
+UTRQP QRSTU
+MK DB VWXYZ
+
+
+----------------------------------------------
+Steps of the solution (brief description that is just enough to reproduce your method):
+
+Pick a word which has a repetitive diagraphics. Use the 4square-help.pdf to guess the word.
+
+Ex. "ne-ge-yw-yw-p" -> "yw" is highly likely to be "in"
+    "yw-eo-no-uz-yw-vu-o" -> "indeterminate"
+    "uq-zw-hp-pa-hp"  -> "troopships"
+
+Guess the rest of the words.
+
+

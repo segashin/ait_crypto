@@ -1,0 +1,37 @@
+Applied Cryptography
+HW5 solutions -- Deadline: March 1 (Sun), midnight
+
+Name: Shinsaku Segawa
+e-mail: segasin0810shin@outlook.jp
+
+=======================================
+Challenge-1: Happy Birthday! (2 points)
+---------------------------------------
+Attach in a zip file the following files:
+- your attack script (attack.py) that performs your attack and prints the two message variants and their trhash values,
+- msg1.txt containing the first (positive) message variant,
+- msg2.txt containing the second (negative) message variant.
+
+Steps of your solution (brief description that is just enough to reproduce your solution):
+<describe here how you solved the challenge>
+
+I made about a hundred variants of messages by changing the words. Then, for each of the variant, I added 1~1000 spaces after "Dear Mr. Jones," and looked if any pair produces the same hashed value.
+
+
+
+=======================================
+Challenge-2: XOR-MAC (2 points)
+---------------------------------------
+Your fake transaction record:
+2020:02:27|11:23:38|21450|A74635|B29846|04002500
+
+---------------------------------------
+Steps of your solution (brief description that is just enough to reproduce your solution):
+<describe here how you solved the challenge>
+1. Split the transaction int three parts
+fmsg1 :  b"2020:02:23|11:23"
+fmsg2 :  b":38|21450|A74635"
+fmsg3 :  b"|B29846|00002500
+
+2. The 8th digints of fmsg1 and fmsg3 can be changed keeping the result of xor the same.
+   Chaning 3->4, 0->4 works.

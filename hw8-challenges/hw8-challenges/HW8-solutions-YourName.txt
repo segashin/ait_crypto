@@ -1,0 +1,69 @@
+Applied Cryptography
+HW8 solutions -- Deadline: March 15 (Wed), midnight
+
+Name: Shinsaku Segawa
+e-mail: segashin0810shin@outlook.jp
+
+Note: If you feel that drawing message sequence diagrams is easier in Word 
+or PowerPoint or by hand, then you can create your solution file yourself, but
+please, submit everything in a single PDF file with the sections below.
+
+
+====================================================
+Challenge-1: The wide-mouth-frog protocol (2 points)
+----------------------------------------------------
+Description of your attack (including a message sequence diagram):
+First, the attacker acquires the message that Trent sent to Bob.
+Second, the attacker forwards the acquired message to Trent.
+Third, Trent generates a corresponding message to Alice with the current timestamp and an updated MAC sequence.
+Forth, the attacker acquires the message that Trent sent to Alice and forwards it back to Trent.
+Lastly, Trent will generate a corresponding message with an updated timestamp and proper MAC sequence.
+
+Alice                                                        Trent                               Mallory                               Bob
+|                                                              |                                   |                                    |
+generate K                                                     |                                   |                                    |
+|                                                              |                                   |                                    |
+|    =>  [Bob|Tx|Ekx(K)|MACkx(...)] =>                         |  => [Alice|Tt|Eky(K)|MACky(...) =>|                                    |
+|                                                              |                                   |                                    |
+|                                                              |                                   |                                    |
+|                                                              |  <= [Alice|Tt|Eky(K)|MACky(...) <=|                                    |
+|                       Mallory                                |                                   |                                    |
+|                          |   <= [Bob|Tt'|Ekx(K)|MACky(...) <=|                                   |                                    |
+|                          |                                   |                                                                        |
+|                          |   => [Bob|Tt'|Ekx(K)|MACky(...) =>|                                                                        |
+|                          |                                   |                                                                        |
+|                          |                                   | ================> [Bob|Tt''|Eky(K)|MACky(...) ======================>  |
+|                          |                                   |                                                                        |
+|                          |                                   |                                                                        |
+
+
+
+
+===================================================
+Challenge-2: The public key NS protocol (2 points)
+---------------------------------------------------
+Description of your attack (including a message sequence diagram):
+
+Let Alice encrypt her nonce Na using the attacker’s public key and send it to the attacker.
+The attacker can decrypt Alice’s nonce and encrypt [Na|Alice] using Bob’s public key and send it to Bob. 
+Bob will send back Alice’s nonce and his nonce Nb encrypted with Alice’s public key. 
+The attacker can simply forward it to Alice. Alice will send back Nb encrypted with the attacker’s public key. 
+The attacker can decrypt it and encrypt it with Bob’s public key and send it to Bob.
+The attacker obtains both Na and Nb so she/he can compute f(Na,Nb) and Bob believes he established a connection with Alice.
+
+
+Alice                   Mallory                         Bob
+|                          |                             |
+| =>PubEncKm(Nx|x) =>      | =>PubEncKb(Nx|x)=>          |
+|                          |                             |
+|                 <=PubEncKx(Nx|Ny)<=                    |
+|                          |                             |
+|  =>PubEncKm(Ny)=>        | =>PubEncKy(Ny)=>            |
+|                          |                             |
+|                          |                             |
+
+
+
+
+
+=======================================
